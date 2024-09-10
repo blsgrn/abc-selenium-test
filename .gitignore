@@ -12,9 +12,6 @@ target/
 .mvn/wrapper/maven-wrapper.jar
 .mvn/wrapper/maven-wrapper.properties
 
-# Test results and reports
-surefire-reports/
-test-output/
 
 # OS-specific files
 .DS_Store
