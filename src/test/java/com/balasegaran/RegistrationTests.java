@@ -1,8 +1,8 @@
 package com.balasegaran;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegistrationTests {
   private WebDriver driver;
@@ -32,13 +32,13 @@ public class RegistrationTests {
     options.addArguments("--remote-allow-origins=*");
 
     driver = new ChromeDriver(options);
-    wait = new WebDriverWait(driver, Duration.ofSeconds(20));// wait 20 minutes
+    wait = new WebDriverWait(driver, Duration.ofSeconds(20));// wait 20 seconds
 
     driver.get("http://localhost:3000/sign-up");
   }
 
   @Test
-  public void testRegistration() {
+  public void testRegistration() throws InterruptedException {
     // Fill out registration form
     WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
     WebElement passwordField = driver.findElement(By.name("password"));
@@ -56,18 +56,27 @@ public class RegistrationTests {
     nameField.sendKeys("New User");
     emailField.sendKeys("new.user@example.com");
     contactNumberField.sendKeys("1234567890");
-    subscribeCheckbox.click(); // Check subscribe checkbox
+    subscribeCheckbox.click();
     submitButton.click();
 
-    // Verify registration success
-    WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Login")));
-    assertTrue(loginButton.isDisplayed(), "Login button should be displayed after registration");
-  }
+    // Handle alert
+    Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+    String alertText = alert.getText();
+    assertEquals("Registration successful!", alertText, "Alert text should confirm successful registration");
 
-  @AfterEach
-  public void tearDown() {
-    if (driver != null) {
-      driver.quit();
-    }
+    alert.accept();
+
+    // Wait for 10 seconds
+    Thread.sleep(10000); // 10000 milliseconds = 10 seconds
+
+    // Check that the URL has changed to the sign-in page
+    String currentUrl = driver.getCurrentUrl();
+    assertEquals("http://localhost:3000/sign-in", currentUrl,
+        "URL should be changed to the sign-in page after registration");
+
+    // Verify that the login button is visible on the sign-in page
+    WebElement loginButton = wait
+        .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
+    assertEquals("Login", loginButton.getText(), "Login button should be visible on the sign-in page");
   }
 }

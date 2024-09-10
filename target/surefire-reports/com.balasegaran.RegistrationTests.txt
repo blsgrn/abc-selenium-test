@@ -1,16 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.balasegaran.RegistrationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.563 s <<< FAILURE! - in com.balasegaran.RegistrationTests
-testRegistration  Time elapsed: 6.563 s  <<< ERROR!
-org.openqa.selenium.UnhandledAlertException: 
-unexpected alert open: {Alert text : Registration successful!}
-  (Session info: chrome=128.0.6613.119): Registration successful!
-Build info: version: '4.0.0', revision: '3a21814679'
-System info: host: 'LenovoT430', ip: '127.0.0.1', os.name: 'Linux', os.arch: 'amd64', os.version: '6.1.0-25-amd64', java.version: '17.0.12'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [e09b1e15576c6c19dbcfae95842f0dd0, findElement {using=link text, value=Login}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 128.0.6613.119, chrome: {chromedriverVersion: 128.0.6613.84 (606aa55c7d68..., userDataDir: /tmp/.org.chromium.Chromium...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:34157}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, proxy: Proxy(), se:cdp: ws://localhost:34157/devtoo..., se:cdpVersion: 128.0.6613.119, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: e09b1e15576c6c19dbcfae95842f0dd0
-	at com.balasegaran.RegistrationTests.testRegistration(RegistrationTests.java:63)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.595 s - in com.balasegaran.RegistrationTests
