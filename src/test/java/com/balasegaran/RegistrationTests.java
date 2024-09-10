@@ -52,7 +52,7 @@ public class RegistrationTests {
     // Enter registration details
     usernameField.sendKeys("new_user");
     passwordField.sendKeys("New@password123");
-    repeatPasswordField.sendKeys("New@password123"); // Repeat password should match
+    repeatPasswordField.sendKeys("New@password123");
     nameField.sendKeys("New User");
     emailField.sendKeys("new.user@example.com");
     contactNumberField.sendKeys("1234567890");

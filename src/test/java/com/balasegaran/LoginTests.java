@@ -46,12 +46,12 @@ public class LoginTests {
     WebElement submitButton = wait
         .until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
 
-    usernameField.sendKeys("emma_smith");
-    passwordField.sendKeys("EmmaS#2023");
+    usernameField.sendKeys("emma_smith"); // test username
+    passwordField.sendKeys("EmmaS#2023"); // test password
     submitButton.click();
 
     // Verify navigation by checking the URL
-    String expectedUrl = "http://localhost:3000/staff"; // Change this to the expected URL
+    String expectedUrl = "http://localhost:3000/staff";
     wait.until(ExpectedConditions.urlToBe(expectedUrl));
   }
 
