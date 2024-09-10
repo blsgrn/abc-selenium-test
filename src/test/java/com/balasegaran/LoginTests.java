@@ -8,11 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.time.Duration;
 
 public class LoginTests {
   private WebDriver driver;
+  private WebDriverWait wait;
 
   @BeforeEach
   public void setUp() {
@@ -26,29 +29,30 @@ public class LoginTests {
     options.addArguments("--remote-allow-origins=*");
 
     driver = new ChromeDriver(options);
+    wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // 10 seconds wait
 
     driver.get("http://localhost:3000/");
-
   }
 
   @Test
   public void testLogin() {
-    // Navigate to login page
-    WebElement loginButton = driver.findElement(By.linkText("Login"));
+    // Wait for and click the login button
+    WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-accent")));
     loginButton.click();
 
-    // Fill out login form
-    WebElement usernameField = driver.findElement(By.name("username"));
-    WebElement passwordField = driver.findElement(By.name("password"));
-    WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
+    // Wait for and fill out the login form
+    WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
+    WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
+    WebElement submitButton = wait
+        .until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
 
     usernameField.sendKeys("emma_smith");
     passwordField.sendKeys("EmmaS#2023");
     submitButton.click();
 
-    // Verify login
-    WebElement logoutButton = driver.findElement(By.linkText("Logout"));
-    assertTrue(logoutButton.isDisplayed(), "Logout button should be displayed after login");
+    // Verify navigation by checking the URL
+    String expectedUrl = "http://localhost:3000/staff"; // Change this to the expected URL
+    wait.until(ExpectedConditions.urlToBe(expectedUrl));
   }
 
   @AfterEach

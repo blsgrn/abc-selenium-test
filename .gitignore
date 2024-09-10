@@ -1,0 +1,34 @@
+# Java and Maven-specific files
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+
+
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# Test results and reports
+surefire-reports/
+test-output/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.sublime-workspace
+
+# IDE-specific directories and files
+.vscode/
+*.sublime-project
+
+# Dependency directories
+**/node_modules/
